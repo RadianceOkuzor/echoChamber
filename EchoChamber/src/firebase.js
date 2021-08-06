@@ -54,7 +54,7 @@ export const signOut = () => auth.signOut();
 export const createUserProfileDocument = async (user, additionalData) =>{
   if (!user) return;
 
-  const userRef = firestore.doc(`users/${user.id}`)
+  const userRef = firestore.doc(`Users/${user.id}`)
 
   const snapshot = await userRef.get();
 
@@ -80,7 +80,7 @@ createdAt,
 export const getUserDocument = (uid => {
   if (!uid) return null
   try{
-    const userDocument =  firestore.collection('users').doc(uid).get();
+    const userDocument =  firestore.collection('Users').doc(uid).get();
 
     return {uid, ...userDocument.data()}
   } catch (error){
