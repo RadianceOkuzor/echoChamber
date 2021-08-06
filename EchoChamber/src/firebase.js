@@ -26,8 +26,14 @@ const firebaseConfig = {
   measurementId: "G-Y6G7603QMM"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}else {
+  firebase.app(); // if already initialized, use that one
+}
 
 // Initialize Firebase
 
@@ -37,8 +43,8 @@ firebase.analytics();
 
 
 
-export const firestore = app.firestore();
-export const auth = app.auth();
+export const firestore = firebase.app().firestore();
+export const auth = firebase.app().auth();
 
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => auth.signInWithRedirect(provider);
@@ -82,7 +88,7 @@ export const getUserDocument = (uid => {
   }
 })
 
-export default app;
+export default firebase.app;
 
 
 
