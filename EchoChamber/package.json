@@ -5,7 +5,7 @@
   "dependencies": {
     "fast-crc32c": "^2.0.0",
     "firebase": "^7.16.0",
-    "firebase-admin": "^9.0.0",
+    "firebase-admin": "^9.11.0",
     "firebase-tools": "^8.6.0",
     "hash-stream-validation": "^0.2.3",
     "moment": "^2.27.0",
@@ -14,7 +14,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^4.0.3",
     "redux": "^4.0.5",
     "write-file-atomic": "^3.0.3"
   },
