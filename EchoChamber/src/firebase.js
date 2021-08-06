@@ -51,10 +51,16 @@ export const signInWithGoogle = () => auth.signInWithRedirect(provider);
 export const signOut = () => auth.signOut();
 
 // Signup form into Creating a User
+
+
+
+
 export const createUserProfileDocument = async (user, additionalData) =>{
   if (!user) return;
 
-  const userRef = firestore.doc(`users/${user.id}`)
+
+  console.log(user)
+  const userRef = firebase.database().ref("Users").child().child(user.user.id)
 
   const snapshot = await userRef.get();
 
@@ -63,11 +69,11 @@ export const createUserProfileDocument = async (user, additionalData) =>{
     const createdAt = new Date();
       try{
         await userRef.set({
-displayName,
-email,
-photoUrl,
-createdAt,
-...additionalData,
+          displayName,
+          email,
+          photoUrl,
+          createdAt,  
+          ...additionalData,
         })
       } catch (error){
       console.error('Error Creating User', error.message)
@@ -80,8 +86,7 @@ createdAt,
 export const getUserDocument = (uid => {
   if (!uid) return null
   try{
-    const userDocument =  firestore.collection('users').doc(uid).get();
-
+    const userDocument =  firebase.database().ref().child("Users").child(uid).get();
     return {uid, ...userDocument.data()}
   } catch (error){
     console.error('Error Fetching User', error.message);
