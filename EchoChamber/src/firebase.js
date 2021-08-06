@@ -1,9 +1,11 @@
-// import firebase from 'firebase';
-import * as firebase from 'firebase/app';
-import 'firebase/firestore' ;
-import 'firebase/analytics'
-import "firebase/auth";
-
+import firebase from 'firebase';
+// const firebase = require('firebase/app').default
+// import 'firebase/firestore' ;
+// import 'firebase/analytics'
+// import "firebase/auth";
+//  if (!firebase.apps.length) {
+//    firebase.initializeApp(firebaseConfig)
+// }
 
 // import 'firebase/firestore';
 // const firebase = require("firebase/firebase");
@@ -14,25 +16,35 @@ import "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyApUKFGeW05Iv9-7JFSSnIhCzNZXHhBxb0",
-  authDomain: "trash-talkers.firebaseapp.com",
-  databaseURL: "https://trash-talkers.firebaseio.com",
-  projectId: "trash-talkers",
-  storageBucket: "trash-talkers.appspot.com",
-  messagingSenderId: "17956094321",
-  appId: "1:17956094321:web:38005c16137bf31222f6d0",
-  measurementId: "G-GR572FQHQQ"
+  apiKey: "AIzaSyAZ_ZdGDdA-W2HU_TC4al0anJQmEm4Q1fI",
+  authDomain: "kingsecho-f64eb.firebaseapp.com",
+  databaseURL: "https://kingsecho-f64eb-default-rtdb.firebaseio.com",
+  projectId: "kingsecho-f64eb",
+  storageBucket: "kingsecho-f64eb.appspot.com",
+  messagingSenderId: "445033485685",
+  appId: "1:445033485685:web:9c722d46f16ad4c060ef3c",
+  measurementId: "G-Y6G7603QMM"
 };
+// Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}else {
+  firebase.app(); // if already initialized, use that one
+}
 
 // Initialize Firebase
-export const app = firebase.initializeApp(firebaseConfig);
-firebase.analytics()
 
 
 
 
-export const firestore = app.firestore();
-export const auth = app.auth();
+
+
+
+export const firestore = firebase.app().firestore();
+export const auth = firebase.app().auth();
 
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => auth.signInWithRedirect(provider);
@@ -76,7 +88,7 @@ export const getUserDocument = (uid => {
   }
 })
 
-export default app;
+export default firebase.app;
 
 
 
