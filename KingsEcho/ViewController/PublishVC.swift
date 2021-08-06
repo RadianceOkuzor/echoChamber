@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import Firebase
 import FirebaseFunctions
+import FirebaseFirestore
 
 class PublishVC: UIViewController{
     
@@ -19,8 +20,10 @@ class PublishVC: UIViewController{
     @IBOutlet weak var postStackView: UIStackView!
     
     var ref: DatabaseReference!
+    var firestoreRef: DocumentReference?
+    var db: Firestore!
     
-    var posts = [Article]()
+    var messages = [Article]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,8 @@ class PublishVC: UIViewController{
         tableView.dataSource = self
         
         ref = Database.database().reference()
+        db = Firestore.firestore()
+        
         postsReference = ref.child("Posts")
     }
     
@@ -39,23 +44,23 @@ class PublishVC: UIViewController{
                     print(postData)
                     var post = Article()
                     
-                    for (a,b) in postData {
-                        if let author = b["author"] as? String {
+                    for (_,_) in postData {
+                        if let author = postData["author"] as? String {
                             post.author = author
                         }
-                        if let id = b["id"] as? String {
+                        if let id = postData["id"] as? String {
                             post.id = id
                         }
-                        if let posts = b["post"] as? String {
-                            post.post = posts
+                        if let message = postData["message"] as? String {
+                            post.message = message
                         }
-                        if let originalPublisherId = b["originalPublisherId"] as? String {
+                        if let originalPublisherId = postData["originalPublisherId"] as? String {
                             post.originalPublisherId = originalPublisherId
                         }
-                        if let translator = b["translator"] as? String {
+                        if let translator = postData["translator"] as? String {
                             post.translator = translator
                         }
-                        self.posts.append(post)
+                        self.messages.append(post)
                     }
                     self.tableView.reloadData()
                      
@@ -65,6 +70,21 @@ class PublishVC: UIViewController{
         }
     }
     
+    func setUpListeners(){
+        db.collection("Articles").document("SF")
+            .addSnapshotListener { documentSnapshot, error in
+              guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+              }
+              guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+              }
+              print("Current data: \(data)")
+            }
+    }
+    
     
     @IBAction func newPost(_ sender: Any) {
         postStackView.isHidden = (postStackView.isHidden == true) ? (false) : (true)
@@ -72,16 +92,35 @@ class PublishVC: UIViewController{
     
     @IBAction func publishPost(_ sender: Any) {
         // save to firebase
-        let postId = ref.childByAutoId().key!
         let publisher = Auth.auth().currentUser!.uid
+        let articleRef = db.collection("Articles").document()
+        let docId = articleRef.documentID
         
         let postDict = ["author":authorInput.text!,
                         "translator":translatorInput.text!,
-                        "id":postId,
+                        "id":docId,
                         "post":postText.text!,"originalPublisherId":publisher] as [String : Any]
         
-        self.ref.child("Articles").child("\(postId)").setValue(postDict)
-        self.ref.child("Users").child(publisher).child("MyPosts").updateChildValues([postId:postId])
+ 
+       
+        let userArticle = ["myArticles": [docId:docId]]
+         
+        db.collection("Users").document(publisher).setData(userArticle, merge: true) { err in
+            if let err = err {
+                print("Error writing document for user: \(err)")
+            } else {
+                print("Document successfully written for user!")
+            }
+        }
+        
+        articleRef.setData(postDict) { err in
+            if let err = err {
+                print("Error writing document for article:  \(err)")
+            } else {
+                print("Document successfully written! for article")
+            }
+        } 
+        
         postStackView.isHidden = (postStackView.isHidden == true) ? (false) : (true)
     }
     
@@ -103,22 +142,36 @@ class PublishVC: UIViewController{
         }
     }
     
+    
+    @IBAction func signOut(_ sender: Any) {
+        if let authUser = Auth.auth().currentUser {
+            self.performSegue(withIdentifier: "publishViewToSignIn", sender: nil)
+            do {
+                try? Auth.auth().signOut()
+                print("signed out")
+            } catch  {
+                print("sign out didnt work")
+            }
+            
+        }
+    }
+    
 }
 
 extension PublishVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return messages.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postsTableView", for: indexPath)
-        cell.textLabel?.text = posts[indexPath.row].author
+        cell.textLabel?.text = messages[indexPath.row].author
         return cell 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        manuallyPublishArticle(post: posts[indexPath.row])
+//        manuallyPublishArticle(post: messages[indexPath.row])
         print("message sent to server")
     }
 }

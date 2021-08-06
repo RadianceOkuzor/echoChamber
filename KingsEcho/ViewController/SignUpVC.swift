@@ -7,17 +7,25 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
+import FirebaseFunctions
+import FirebaseFirestore
 
 class SignUpVC: UIViewController {
     
     @IBOutlet weak var emailLabel: UITextField!
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var phoneNumber: UITextField!
+    @IBOutlet weak var language: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
+    var firestoreRef: DocumentReference?
+    var db: Firestore!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        db = Firestore.firestore()
     }
 
     @IBAction func signUp(_ sender:UIButton){
@@ -29,13 +37,19 @@ class SignUpVC: UIViewController {
               // if you have one. Use getTokenWithCompletion:completion: instead.
               let uid = user.uid
               let email = user.email
-              let photoURL = user.photoURL
-              var multiFactorString = "MultiFactor: "
-              for info in user.multiFactor.enrolledFactors {
-                multiFactorString += info.displayName ?? "[DispayName]"
-                multiFactorString += " "
-              }
-              // ...
+                let userDict = ["name":self.name.text!,
+                                "email":self.emailLabel.text!,
+                                "id":uid,
+                                "phoneNumber":self.phoneNumber.text!,"language":self.language.text!] as [String : Any]
+                
+                self.db.collection("Users").document(uid).setData(userDict, merge: true) { err in
+                    if let err = err {
+                        print("Error writing users info document for user: \(err)")
+                    } else {
+                        print("Document successfully written for user!")
+                        self.performSegue(withIdentifier: "signInToPublishVC", sender: nil)
+                    }
+                }
             }
         }
     }

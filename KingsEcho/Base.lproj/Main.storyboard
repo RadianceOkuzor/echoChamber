@@ -91,7 +91,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jdd-nW-lwE">
-                                <rect key="frame" x="82" y="113" width="250" height="152"/>
+                                <rect key="frame" x="82" y="113" width="250" height="278"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email...." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GQE-0C-wZ0">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
@@ -106,8 +106,23 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PzX-uc-vh9">
+                                        <rect key="frame" x="0.0" y="84" width="250" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="phonenumber" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m4M-SX-inF">
+                                        <rect key="frame" x="0.0" y="126" width="250" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Language" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9A-mf-6cV">
+                                        <rect key="frame" x="0.0" y="168" width="250" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqB-rX-Ss6">
-                                        <rect key="frame" x="0.0" y="84" width="250" height="30"/>
+                                        <rect key="frame" x="0.0" y="210" width="250" height="30"/>
                                         <state key="normal" title="Sign up">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -116,7 +131,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="766-BR-EwP">
-                                        <rect key="frame" x="0.0" y="122" width="250" height="30"/>
+                                        <rect key="frame" x="0.0" y="248" width="250" height="30"/>
                                         <state key="normal" title="Sign in">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -137,7 +152,10 @@
                     <navigationItem key="navigationItem" id="AVj-JU-sF4"/>
                     <connections>
                         <outlet property="emailLabel" destination="GQE-0C-wZ0" id="JmZ-cn-IM0"/>
+                        <outlet property="language" destination="P9A-mf-6cV" id="b4r-5r-en6"/>
+                        <outlet property="name" destination="PzX-uc-vh9" id="aJJ-wd-fgK"/>
                         <outlet property="passwordLabel" destination="rTU-Bq-l0Z" id="gz4-pU-8PD"/>
+                        <outlet property="phoneNumber" destination="m4M-SX-inF" id="QCL-fG-WbK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -180,7 +198,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdS-82-IuJ">
                                         <rect key="frame" x="0.0" y="122" width="250" height="30"/>
-                                        <state key="normal" title="Sign in ">
+                                        <state key="normal" title="Sign up">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -302,11 +320,27 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNx-Xt-Epd">
+                                <rect key="frame" x="276" y="36" width="118" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="118" id="66n-lA-dO6"/>
+                                    <constraint firstAttribute="height" constant="43" id="cz0-Mn-Rmi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Sign out">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOut:" destination="0VD-Vd-5SM" eventType="touchUpInside" id="9sp-yE-78D"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jMv-29-RVo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CQ5-jE-v8h" firstAttribute="top" secondItem="jMv-29-RVo" secondAttribute="top" constant="100" id="2oo-g3-fKm"/>
+                            <constraint firstItem="VNx-Xt-Epd" firstAttribute="top" secondItem="jMv-29-RVo" secondAttribute="top" constant="36" id="8dH-jD-hJ1"/>
+                            <constraint firstItem="jMv-29-RVo" firstAttribute="trailing" secondItem="VNx-Xt-Epd" secondAttribute="trailing" constant="20" id="8mD-RQ-4gB"/>
                             <constraint firstItem="CQ5-jE-v8h" firstAttribute="centerX" secondItem="Guj-44-H73" secondAttribute="centerX" id="BQd-a3-dF0"/>
                             <constraint firstItem="4fE-nE-Ddn" firstAttribute="centerY" secondItem="Guj-44-H73" secondAttribute="centerY" id="Mfv-aU-1q4"/>
                             <constraint firstItem="4fE-nE-Ddn" firstAttribute="centerX" secondItem="Guj-44-H73" secondAttribute="centerX" id="uFT-Vx-MRj"/>
@@ -319,6 +353,7 @@
                         <outlet property="postText" destination="rfe-nt-op2" id="NdD-PG-WB6"/>
                         <outlet property="tableView" destination="t8K-Bq-q3Y" id="B6b-UA-Oov"/>
                         <outlet property="translatorInput" destination="lVd-AM-Xi2" id="A0x-yy-aQX"/>
+                        <segue destination="cmm-Gl-N24" kind="show" identifier="publishViewToSignIn" id="1Pb-No-XJw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJa-7j-Iea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -327,6 +362,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="1Pb-No-XJw"/>
         <segue reference="Kge-W1-1lp"/>
     </inferredMetricsTieBreakers>
     <resources>

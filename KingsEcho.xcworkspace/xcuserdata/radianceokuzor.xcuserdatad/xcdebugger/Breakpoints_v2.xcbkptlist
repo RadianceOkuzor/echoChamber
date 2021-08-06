@@ -84,14 +84,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "07835235-B78F-47FD-BAB6-ED5FBB43504D - 5f238dc243902fc6"
+                  uuid = "07835235-B78F-47FD-BAB6-ED5FBB43504D - 648a15210b71da59"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "KingsEcho.ViewController.callToViewModelForUIUpdate() -&gt; ()"
                   moduleName = "KingsEcho"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/radianceokuzor/Desktop/KingsEchoApp/KingsEcho/KingsEcho/ViewController/ViewController.swift"
+                  urlString = "file:///Users/radianceokuzor/Documents/GitHub/echoChamber/KingsEcho/ViewController/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
@@ -99,14 +99,14 @@
                   offsetFromSymbolStart = "86">
                </Location>
                <Location
-                  uuid = "07835235-B78F-47FD-BAB6-ED5FBB43504D - 1016e30852d1d9ca"
+                  uuid = "07835235-B78F-47FD-BAB6-ED5FBB43504D - 2bbf7beb1a302c55"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 () -&gt; () in KingsEcho.ViewController.callToViewModelForUIUpdate() -&gt; ()"
                   moduleName = "KingsEcho"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/radianceokuzor/Desktop/KingsEchoApp/KingsEcho/KingsEcho/ViewController/ViewController.swift"
+                  urlString = "file:///Users/radianceokuzor/Documents/GitHub/echoChamber/KingsEcho/ViewController/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"

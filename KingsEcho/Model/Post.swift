@@ -27,19 +27,20 @@ class Article {
         likes = []
         language = ""
         articleTranslations = []
-        timeStamp = nil
+        timeStamp = Date()
     }
 }
 
 class User {
-    var id: String
-    var name: String
-    var phoneNumber: String
-    var age: Int
-    var nationality: Int 
-    var email: String
-    var myArticles: [Article]
-    var mySubscribers: [String] // list of user id of people who need to get notified of my articles
-    var mySubscription: [String] //this is a list of the echochambers i am a part of
+    var id: String?
+    var name: String?
+    var phoneNumber: String?
+    var age: Int?
+    var nationality: Int?
+    var language: String?
+    var email: String!
+    var myArticles: [Article]?
+    var mySubscribers: [String]? // list of user id of people who need to get notified of my articles
+    var mySubscription: [String]? //this is a list of the echochambers i am a part of
 }
  

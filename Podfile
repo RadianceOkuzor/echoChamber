@@ -13,6 +13,7 @@ pod 'FirebaseUI/Phone'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'Firebase/Functions'
+pod 'Firebase/Firestore'
 
   target 'KingsEchoTests' do
     inherit! :search_paths

@@ -9,6 +9,8 @@ const authToken = '06aa40bc76a73c4286a18edc244811de'
 const client = new twilio(accoundSid, authToken);
 
 const twilioNumber = '+14157428578'
+const twilioSid = 'MG4551d356d47dee5fab9feb7cb11ae8eb'
+const numbers = ['+18509602169' , '+12142549989' , '+12542947773','+18172312097','+18509602169' , '+12142549989' , '+12542947773','+18172312097','+18509602169' , '+12142549989' , '+12542947773','+18172312097','+18509602169' , '+12142549989' , '+12542947773','+18172312097','+18509602169' , '+12142549989' , '+12542947773','+18172312097'];
 
 
 exports.manuallyPublishArticle = functions.https.onCall(
@@ -19,16 +21,31 @@ exports.manuallyPublishArticle = functions.https.onCall(
     const originalPublisherId = data.originalPublisherId;
     const phoneNumber = '+18509602169' 
 
-    client.messages
-    .create({
-        body: `Congratulations you are the second 
+    Promise.all(
+        numbers.map(number => {
+            return client.messages.create({
+                to:number,
+                from: twilioSid,
+                body: `Congratulations you are the second 
                 subscriber to Kings Echo \n\n\n
                 ${author}\n
-                ${post}`,
-        from: twilioNumber,
-        to: phoneNumber
-    })
-    .then(message => console.log(message.sid)); 
+                ${post}`
+            });
+        })
+    ).then(messages => {
+        console.log('Messages all sent')
+    }).catch(err => console.error(err));
+
+    // client.messages
+    // .create({
+    //     body: `Congratulations you are the second 
+    //             subscriber to Kings Echo \n\n\n
+    //             ${author}\n
+    //             ${post}`,
+    //     from: twilioNumber,
+    //     to: twilioSid
+    // })
+    // .then(message => console.log(message.sid)); 
  
   });
 
