@@ -14,15 +14,18 @@ import "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyApUKFGeW05Iv9-7JFSSnIhCzNZXHhBxb0",
-  authDomain: "trash-talkers.firebaseapp.com",
-  databaseURL: "https://trash-talkers.firebaseio.com",
-  projectId: "trash-talkers",
-  storageBucket: "trash-talkers.appspot.com",
-  messagingSenderId: "17956094321",
-  appId: "1:17956094321:web:38005c16137bf31222f6d0",
-  measurementId: "G-GR572FQHQQ"
+  apiKey: "AIzaSyAZ_ZdGDdA-W2HU_TC4al0anJQmEm4Q1fI",
+  authDomain: "kingsecho-f64eb.firebaseapp.com",
+  databaseURL: "https://kingsecho-f64eb-default-rtdb.firebaseio.com",
+  projectId: "kingsecho-f64eb",
+  storageBucket: "kingsecho-f64eb.appspot.com",
+  messagingSenderId: "445033485685",
+  appId: "1:445033485685:web:9c722d46f16ad4c060ef3c",
+  measurementId: "G-Y6G7603QMM"
 };
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 // Initialize Firebase
 export const app = firebase.initializeApp(firebaseConfig);
