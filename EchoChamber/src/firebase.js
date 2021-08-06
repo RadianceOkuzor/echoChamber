@@ -1,9 +1,11 @@
-// import firebase from 'firebase';
-import * as firebase from 'firebase/app';
-import 'firebase/firestore' ;
-import 'firebase/analytics'
-import "firebase/auth";
-
+import firebase from 'firebase';
+// const firebase = require('firebase/app').default
+// import 'firebase/firestore' ;
+// import 'firebase/analytics'
+// import "firebase/auth";
+//  if (!firebase.apps.length) {
+//    firebase.initializeApp(firebaseConfig)
+// }
 
 // import 'firebase/firestore';
 // const firebase = require("firebase/firebase");
@@ -28,8 +30,9 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 // Initialize Firebase
-export const app = firebase.initializeApp(firebaseConfig);
-firebase.analytics()
+
+
+
 
 
 
