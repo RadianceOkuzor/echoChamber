@@ -1,0 +1,6 @@
+framework module Pods_KingsEcho_KingsEchoUITests {
+  umbrella header "Pods-KingsEcho-KingsEchoUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
