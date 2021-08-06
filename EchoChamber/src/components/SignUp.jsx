@@ -4,7 +4,7 @@ import {auth} from '../firebase'
 
 
 class SignUp extends Component {
-  state = { displayName: '', email: '', password: '' };
+  state = { email: '', password: '' };
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -15,33 +15,27 @@ class SignUp extends Component {
   handleSubmit = async event => {
     event.preventDefault();
 
-   const{email, password, displayName} = this.state
+   const{email, password} = this.state
    try{
      const{user} = await auth.createUserWithEmailAndPassword(
        email,
        password,
      );
 
- createUserProfileDocument(user,{displayName})
+ createUserProfileDocument(user)
    } catch (error){
      console.error(error)
    }
-   this.setState({ displayName: '', email: '', password: '' });
+   this.setState({ email: '', password: '' });
   };
 
   render() {
-    const { displayName, email, password } = this.state;
+    const { email, password } = this.state;
 
     return (
       <form className="SignUp" onSubmit={this.handleSubmit}>
         <h2>Sign Up</h2>
-        <input
-          type="text"
-          name="displayName"
-          placeholder="Display Name"
-          value={displayName}
-          onChange={this.handleChange}
-        />
+      
         <input
           type="email"
           name="email"
@@ -49,6 +43,7 @@ class SignUp extends Component {
           value={email}
           onChange={this.handleChange}
         />
+
         <input
           type="password"
           name="password"
