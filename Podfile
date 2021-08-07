@@ -15,6 +15,7 @@ pod 'Firebase/Storage'
 pod 'Firebase/Functions'
 pod 'Firebase/Firestore'
 pod 'FoldingCell'
+pod 'IQKeyboardManagerSwift'
 
   target 'KingsEchoTests' do
     inherit! :search_paths
