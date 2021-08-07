@@ -16,36 +16,34 @@ const numbers = ['+18509602169' , '+12142549989' , '+12542947773','+18172312097'
 exports.manuallyPublishArticle = functions.https.onCall(
     async (data, context) => {
     const author = data.author;  
-    const translator = data.translator;
-    const post = data.message;  
-    const originalPublisherId = data.originalPublisherId;
-    const phoneNumber = '+18509602169' 
+    const publisherName = data.publisherName;
+    const message = data.message;  
+    const title = data.title;
+    const phoneNumbers = data.numbers
 
     Promise.all(
-        numbers.map(number => {
+        phoneNumbers.map(number => {
             return client.messages.create({
                 to:number,
                 from: twilioSid,
-                body: `Congratulations you are the second 
-                subscriber to Kings Echo \n\n\n
-                ${author}\n
-                ${post}`
+                body: `Echo from ${publisherName}\n\n${title}\n${message}\n\nBy ${author}`
             });
         })
     ).then(messages => {
         console.log('Messages all sent')
-    }).catch(err => console.error(err));
+    }).catch(err => console.error(err)); 
+ 
+  });
 
-    // client.messages
-    // .create({
-    //     body: `Congratulations you are the second 
-    //             subscriber to Kings Echo \n\n\n
-    //             ${author}\n
-    //             ${post}`,
-    //     from: twilioNumber,
-    //     to: twilioSid
-    // })
-    // .then(message => console.log(message.sid)); 
+  exports.sendWelcomeMessageToSubscriber = functions.https.onCall(
+    async (data, context) => { 
+    const publisherName = data.publisherName; 
+    const phoneNumbers = data.numbers
+
+    client.messages
+      .create({body: `Welcome To ${publisherName}s' Echo 
+      Chamber`, from: twilioSid, to: phoneNumbers})
+      .then(message => console.log(message.sid));
  
   });
 

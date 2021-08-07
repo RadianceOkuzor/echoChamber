@@ -20,7 +20,7 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var passwordLabel: UITextField!
     var firestoreRef: DocumentReference?
     var db: Firestore!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +36,7 @@ class SignUpVC: UIViewController {
               // Do NOT use this value to authenticate with your backend server,
               // if you have one. Use getTokenWithCompletion:completion: instead.
               let uid = user.uid
+                
               let email = user.email
                 let userDict = ["name":self.name.text!,
                                 "email":self.emailLabel.text!,
@@ -47,7 +48,8 @@ class SignUpVC: UIViewController {
                         print("Error writing users info document for user: \(err)")
                     } else {
                         print("Document successfully written for user!")
-                        self.performSegue(withIdentifier: "signInToPublishVC", sender: nil)
+                        
+                        self.performSegue(withIdentifier: "signUpToArticleView", sender: nil)
                     }
                 }
             }

@@ -23,6 +23,7 @@ class SignInVC: UIViewController {
     override func viewDidLayoutSubviews() {
         if let authUser = Auth.auth().currentUser {
             self.performSegue(withIdentifier: "signInToPublishVC", sender: nil)
+//            try! Auth.auth().signOut()
         }
     }
 

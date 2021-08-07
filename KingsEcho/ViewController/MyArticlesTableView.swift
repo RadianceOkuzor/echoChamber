@@ -12,7 +12,7 @@ import FirebaseFirestore
 import FoldingCell
 import UIKit
 
-class ArticlesTableVC: UITableViewController {
+class MyArticlesTableVC: UITableViewController {
 
     enum Const {
         static let closeCellHeight: CGFloat = 179
@@ -59,14 +59,14 @@ class ArticlesTableVC: UITableViewController {
 
 // MARK: - TableView
 
-extension ArticlesTableVC {
+extension MyArticlesTableVC {
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return messages.count
     }
 
     override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard case let cell as ArticlesCell = cell else {
+        guard case let cell as MyArticlesCell = cell else {
             return
         }
 
@@ -82,28 +82,25 @@ extension ArticlesTableVC {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! ArticlesCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell2", for: indexPath) as! MyArticlesCell
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations
-        cell.publisherId = messages[indexPath.row].originalPublisherId
-        cell.articleId = messages[indexPath.row].id
+        
         cell.authorLabel.text = messages[indexPath.row].author
-        cell.authorLabelOpen.text = messages[indexPath.row].author
         cell.messageBodyLabel.text = messages[indexPath.row].message
         cell.translatorsLabel.text = messages[indexPath.row].translatorName
-        
         cell.messageTitleLabel.text = messages[indexPath.row].title
         cell.messageTitleOpen.text = messages[indexPath.row].title
         cell.publisherNameLabel.text = messages[indexPath.row].publisherName
         let str = messages[indexPath.row].publisherName?.prefix(2)
         cell.publisherInitials.text = String(str ?? "--")
         cell.publisherInitialsClosed.text =  String(str ?? "--")
-        let count = "\(messages[indexPath.row].echoesCount ?? 0)"
-        cell.echoesCountLabel.text = count
-        cell.echoesCountLabelClosed.text = count 
+        
+        
+        
         /*
-         
+         cell.echoesCountLabel.text = messages[indexPath.row].echoesCount
          cell.publisherIcon.image = messages[indexPath.row].linkToPubImage
          
          */
@@ -118,7 +115,7 @@ extension ArticlesTableVC {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let cell = tableView.cellForRow(at: indexPath) as! ArticlesCell
+        let cell = tableView.cellForRow(at: indexPath) as! MyArticlesCell
 
         if cell.isAnimating() {
             return
@@ -148,7 +145,7 @@ extension ArticlesTableVC {
     }
 }
 
-extension ArticlesTableVC {
+extension MyArticlesTableVC {
     func setUpListeners(){
         db.collection("Articles").addSnapshotListener { documentSnapshot, error in
               guard let document = documentSnapshot?.documents else {
@@ -171,8 +168,8 @@ extension ArticlesTableVC {
                     if let messageTitle = data["title"] as? String {
                         article.title = messageTitle
                     }
-                    if let echoesCount = data["echoesCount"] as? [String] {
-                        article.echoesCount = echoesCount.count
+                    if let echoesCount = data["echoesCount"] as? Int {
+                        article.echoesCount = echoesCount
                     }
                     if let likesCount = data["likesCount"] as? [String] {
                         article.likes = likesCount
@@ -186,7 +183,9 @@ extension ArticlesTableVC {
                     if let translator = data["translatorName"] as? String {
                         article.translatorName = translator
                     }
-                    self.messages.append(article)
+                    if article.originalPublisherId == Auth.auth().currentUser?.uid {
+                        self.messages.append(article)
+                    }
                 }
             self.setup()
             self.tableView.reloadData()
@@ -197,7 +196,7 @@ extension ArticlesTableVC {
         let myId = Auth.auth().currentUser!.uid
         let docRef = db.collection("Users").document(myId)
 
-        docRef.addSnapshotListener { (document, error) in
+        docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 
                 if let data = document.data() {
@@ -212,12 +211,6 @@ extension ArticlesTableVC {
                     }
                     if let language = data["language"] as? String {
                         UserData.shared.language = language
-                    }
-                    if let phoneNumbers = data["mySubscribers"] as? [String:[String:AnyObject]]{
-                        UserData.shared.subscribersPhoneNumbers = Array(phoneNumbers.keys)
-                    }
-                    if let mySubscriptions = data["mySubscriptions"] as? [String:String]{
-                        UserData.shared.mySubscriptions = mySubscriptions
                     }
                 }
                   

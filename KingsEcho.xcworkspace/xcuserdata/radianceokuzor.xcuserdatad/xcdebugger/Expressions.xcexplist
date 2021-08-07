@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ArticlesCell.sendPayLoadToServer():ArticlesCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UserData.shared.subscribersPhoneNumbers\">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

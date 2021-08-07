@@ -10,11 +10,10 @@ import FirebaseFirestore
 import FoldingCell
 import UIKit
 
-class ArticlesCell: FoldingCell {
+class MyArticlesCell: FoldingCell {
  
     @IBOutlet weak var publisherInitialsClosed: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var authorLabelOpen: UILabel!
     @IBOutlet weak var echoesCountLabel: UILabel!
     @IBOutlet weak var echoesCountLabelClosed: UILabel!
     @IBOutlet weak var translatorsLabel: UILabel!
@@ -32,7 +31,6 @@ class ArticlesCell: FoldingCell {
     
     var db: Firestore!
     var publisherId = String()
-    var articleId = String()
     var likeCount = 0
     var number: Int = 0 {
         didSet {
@@ -58,15 +56,7 @@ class ArticlesCell: FoldingCell {
     }
     
     @IBAction func echoPrsd(_ sender: Any) {
-        sendPayLoadToServer()
-        let echoDict = ["echoesCount": UserData.shared.subscribersPhoneNumbers]
-        db.collection("Articles").document(articleId).setData(echoDict, merge: true) { err in
-            if let err = err {
-                print("Error writing document for user: \(err)")
-            } else {
-                print("Document successfully written for user!")
-            }
-        }
+        
     }
     
     @IBAction func subscribePrsd(_ sender: Any) {
@@ -84,7 +74,7 @@ class ArticlesCell: FoldingCell {
             }
             
             //add subscriber this user to the publisher's subscribers
-            let dict = ["subscriberName":UserData.shared.name,
+            let dict = ["subscriberName":UserData.shared.phoneNumber,
                             "subscriberPhoneNumber":UserData.shared.phoneNumber] as [String : Any]
             
             let mySubscribers = ["mySubscribers": [UserData.shared.phoneNumber:dict]]
@@ -99,28 +89,11 @@ class ArticlesCell: FoldingCell {
             
         }
     }
-    
-    func sendPayLoadToServer(){
-        let postDict = ["author":authorLabel.text,
-                        "publisherName":publisherNameLabel.text,
-                        "message":messageBodyLabel.text!,
-                        "title":messageTitleOpen.text!,
-                        "numbers": UserData.shared.subscribersPhoneNumbers] as [String : Any]
-        
-        Functions.functions().httpsCallable("manuallyPublishArticle").call(postDict)  { (result, err) in
-            print("____resutl.data is\n \(result?.data)")
-            if  err != nil {
-                print("____Message wasn't manually sent  \(err?.localizedDescription)")
-            } else {
-
-            }
-        }
-    }
 }
 
 // MARK: - Actions ⚡️
 
-extension ArticlesCell {
+extension MyArticlesCell {
 
     @IBAction func buttonHandler(_: AnyObject) {
         print("tap")
