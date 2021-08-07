@@ -11,22 +11,28 @@ class Article {
     var author: String
     var id: String
     var originalPublisherId: String
+    var publisherName: String?
+    var title: String
     var message: String
-    var translator: String
+    var translatorName: String?
+    var translatorId: String?
     var likes: [String]
     var language: String
     var articleTranslations: [Article]
     var timeStamp: Date
+    var linkToPubImage: String?
+    var linkToArticleImage: String?
+    var echoesCount: Int?
     
     init() {
         author = ""
         id = ""
         originalPublisherId = ""
         message = ""
-        translator = ""
         likes = []
         language = ""
         articleTranslations = []
+        title = ""
         timeStamp = Date()
     }
 }

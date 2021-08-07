@@ -14,6 +14,7 @@ pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'Firebase/Functions'
 pod 'Firebase/Firestore'
+pod 'FoldingCell'
 
   target 'KingsEchoTests' do
     inherit! :search_paths
