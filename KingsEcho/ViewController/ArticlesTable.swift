@@ -92,7 +92,7 @@ extension ArticlesTableVC {
         cell.authorLabelOpen.text = messages[indexPath.row].author
         cell.messageBodyLabel.text = messages[indexPath.row].message
         cell.translatorsLabel.text = messages[indexPath.row].translatorName
-        
+        cell.messageTranslation = messages[indexPath.row].messageTranslated ?? [:]
         cell.messageTitleLabel.text = messages[indexPath.row].title
         cell.messageTitleOpen.text = messages[indexPath.row].title
         cell.publisherNameLabel.text = messages[indexPath.row].publisherName
@@ -164,6 +164,9 @@ extension ArticlesTableVC {
                     }
                     if let id = data["id"] as? String {
                         article.id = id
+                    }
+                    if let messageT = data["messageTranslated"] as? [String:String] {
+                        article.messageTranslated = messageT
                     }
                     if let message = data["message"] as? String {
                         article.message = message

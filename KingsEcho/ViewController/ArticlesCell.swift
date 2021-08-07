@@ -34,6 +34,7 @@ class ArticlesCell: FoldingCell {
     var publisherId = String()
     var articleId = String()
     var likeCount = 0
+    var messageTranslation = [String:String]()
     var number: Int = 0 {
         didSet {
 //            PublisherInitials.text = String(number)
@@ -53,8 +54,44 @@ class ArticlesCell: FoldingCell {
         return durations[itemIndex]
     }
     @IBAction func likePrsd(_ sender: Any) {
-        likeCount += 1
-        likesCountLabel.text = String(likeCount)
+        //Show different translation
+        if likeCount < messageTranslation.count {
+            let translation = messageTranslation.index(messageTranslation.startIndex, offsetBy: likeCount)
+            
+             
+            let key = Array(messageTranslation.keys)[likeCount]
+            let value = Array(messageTranslation.values)[likeCount]
+            
+            
+            var text = "Message translated to \(returnLange(string: key))\n"
+            text.append(value)
+            self.messageBodyLabel.text = text
+            likeCount += 1
+        } else {
+            likeCount = 0
+        }
+        
+        
+    }
+    
+    func returnLange(string:String) -> String{
+        var lan = "English"
+        if string == "en" {
+            lan = "English"
+        } else if string == "es" {
+            lan = "Spanish"
+        } else if string == "de" {
+            lan = "Duecth"
+        } else if string == "fr" {
+            lan = "French"
+        } else if string == "ru" {
+            lan = "Russian"
+        } else if string == "ro" {
+            lan = "Romanian"
+        } else if string == "ig" {
+            lan = "Igbp"
+        }
+        return lan
     }
     
     @IBAction func echoPrsd(_ sender: Any) {

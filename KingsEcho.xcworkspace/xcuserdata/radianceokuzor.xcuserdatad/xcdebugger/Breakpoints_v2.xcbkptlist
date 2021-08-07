@@ -270,13 +270,13 @@
             filePath = "KingsEcho/ViewController/ArticlesCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "sendPayLoadToServer()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "16E72E9A-52D9-492F-A800-43269E433A3F - 9fc86fbd75703c4e"
+                  uuid = "16E72E9A-52D9-492F-A800-43269E433A3F - 9fc86fbd75702728"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -286,12 +286,12 @@
                   urlString = "file:///Users/radianceokuzor/Documents/GitHub/echoChamber/KingsEcho/ViewController/ArticlesCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "109"
-                  endingLineNumber = "109"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
                   offsetFromSymbolStart = "2559">
                </Location>
                <Location
-                  uuid = "16E72E9A-52D9-492F-A800-43269E433A3F - 9451fb5c915735ee"
+                  uuid = "16E72E9A-52D9-492F-A800-43269E433A3F - 9451fb5c91572ec4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -301,8 +301,8 @@
                   urlString = "file:///Users/radianceokuzor/Documents/GitHub/echoChamber/KingsEcho/ViewController/ArticlesCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "110"
-                  endingLineNumber = "110"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
                   offsetFromSymbolStart = "186">
                </Location>
             </Locations>

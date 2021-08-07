@@ -14,6 +14,7 @@ class Article {
     var publisherName: String?
     var title: String
     var message: String
+    var messageTranslated: [String:String]?
     var translatorName: String?
     var translatorId: String?
     var likes: [String]

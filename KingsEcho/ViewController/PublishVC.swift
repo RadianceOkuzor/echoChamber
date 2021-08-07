@@ -105,8 +105,8 @@ class PublishVC: UIViewController{
     
     
     @IBAction func newPost(_ sender: Any) {
-        try! Auth.auth().signOut()
-        performSegue(withIdentifier: "showsignup", sender: nil)
+//        try! Auth.auth().signOut()
+//        performSegue(withIdentifier: "showsignup", sender: nil)
         addNewPersonView.isHidden = (addNewPersonView.isHidden == true) ? (false) : (true)
     }
     
@@ -176,7 +176,7 @@ extension PublishVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == tableView2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "postsTableView2", for: indexPath) as! ChamberTableViewCell
-            cell.subscriptionName.text = subscribers[indexPath.row].name
+            cell.subscriptionName.text = subscriptions[indexPath.row].name
             cell.imageViweCellSubscription?.image = #imageLiteral(resourceName: "photo")
             return cell
         } else {

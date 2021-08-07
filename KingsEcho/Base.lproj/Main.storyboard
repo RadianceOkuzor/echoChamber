@@ -381,7 +381,7 @@
                                         </constraints>
                                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postsTableView" rowHeight="90" id="lOF-S6-RNJ" customClass="ChamberTableViewCell" customModule="KingsEcho" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postsTableView2" rowHeight="90" id="lOF-S6-RNJ" customClass="ChamberTableViewCell" customModule="KingsEcho" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="24.5" width="394" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lOF-S6-RNJ" id="w5o-6F-9xm">
@@ -432,8 +432,8 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <outlet property="imageVIewCell" destination="S8E-cX-9E1" id="0i3-lV-2d7"/>
-                                                    <outlet property="subscriberName" destination="zKw-zj-AYu" id="UG3-T2-pqF"/>
+                                                    <outlet property="imageViweCellSubscription" destination="S8E-cX-9E1" id="08R-Qm-hLt"/>
+                                                    <outlet property="subscriptionName" destination="zKw-zj-AYu" id="Fn7-6s-ibq"/>
                                                     <outlet property="viewPlacement" destination="wmz-j8-6hf" id="a1A-rM-t6G"/>
                                                 </connections>
                                             </tableViewCell>
@@ -484,9 +484,6 @@
                                         <state key="normal" title="Publish">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="publishPost:" destination="0VD-Vd-5SM" eventType="touchUpInside" id="6hq-e8-Yla"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -588,7 +585,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="TableViewController2" modalPresentationStyle="fullScreen" id="3Nl-Ph-sRu" customClass="ArticlesTableVC" customModule="KingsEcho" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="773" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zpx-8U-bfL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1002,7 +999,7 @@
                                                                     <rect key="frame" x="230" y="0.0" width="110" height="33"/>
                                                                     <color key="backgroundColor" red="0.99607843139999996" green="0.74509803919999995" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
-                                                                    <state key="normal" title="LIKE">
+                                                                    <state key="normal" title="Translate">
                                                                         <color key="titleColor" red="0.27058823529999998" green="0.2156862745" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </state>
                                                                     <userDefinedRuntimeAttributes>
@@ -1011,7 +1008,6 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="echoPrsd:" destination="rW3-MI-KIk" eventType="touchUpInside" id="LLs-P2-Pg1"/>
                                                                         <action selector="likePrsd:" destination="rW3-MI-KIk" eventType="touchUpInside" id="Im5-8g-Q1b"/>
                                                                     </connections>
                                                                 </button>
@@ -1769,14 +1765,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qNm-hC-05S"/>
+        <segue reference="97F-nW-76H"/>
         <segue reference="ldI-Cj-1Mr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="375" height="937"/>
         <image name="burger" width="38" height="29"/>
         <image name="image" width="340.5" height="165"/>
-        <image name="photo" width="98" height="98"/>
+        <image name="photo" width="239" height="210"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
