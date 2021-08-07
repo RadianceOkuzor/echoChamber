@@ -167,12 +167,12 @@
                         <outlet property="name" destination="PzX-uc-vh9" id="aJJ-wd-fgK"/>
                         <outlet property="passwordLabel" destination="rTU-Bq-l0Z" id="gz4-pU-8PD"/>
                         <outlet property="phoneNumber" destination="m4M-SX-inF" id="QCL-fG-WbK"/>
-                        <segue destination="3Nl-Ph-sRu" kind="show" identifier="signUpToArticleView" id="qNm-hC-05S"/>
+                        <segue destination="OxS-hK-eH3" kind="show" identifier="signUpToArticleView" id="EZW-Fx-BkV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2290" y="964"/>
+            <point key="canvasLocation" x="2307" y="951"/>
         </scene>
         <!--Sign InVC-->
         <scene sceneID="Qmc-fu-ChL">
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fK-MW-mj1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2388" y="137"/>
+            <point key="canvasLocation" x="2335" y="-35"/>
         </scene>
         <!--Chamber-->
         <scene sceneID="TOY-XG-oBw">
@@ -578,7 +578,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJa-7j-Iea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4110" y="82"/>
+            <point key="canvasLocation" x="4074" y="7"/>
         </scene>
         <!--Articles-->
         <scene sceneID="twv-rP-hX4">
@@ -1765,7 +1765,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="97F-nW-76H"/>
+        <segue reference="EZW-Fx-BkV"/>
         <segue reference="ldI-Cj-1Mr"/>
     </inferredMetricsTieBreakers>
     <resources>
