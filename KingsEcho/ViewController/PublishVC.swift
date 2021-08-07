@@ -34,54 +34,42 @@ class PublishVC: UIViewController{
         ref = Database.database().reference()
         db = Firestore.firestore()
         
-        postsReference = ref.child("Posts")
-    }
-    
-    private var postsReference:DatabaseReference? {
-        didSet{
-            ref.child("Articles").observe(DataEventType.value, with: { (snapshot) in
-                if let postData = snapshot.value as? [String : AnyObject] {
-                    print(postData)
-                    var post = Article()
-                    
-                    for (_,_) in postData {
-                        if let author = postData["author"] as? String {
-                            post.author = author
-                        }
-                        if let id = postData["id"] as? String {
-                            post.id = id
-                        }
-                        if let message = postData["message"] as? String {
-                            post.message = message
-                        }
-                        if let originalPublisherId = postData["originalPublisherId"] as? String {
-                            post.originalPublisherId = originalPublisherId
-                        }
-                        if let translator = postData["translator"] as? String {
-                            post.translator = translator
-                        }
-                        self.messages.append(post)
-                    }
-                    self.tableView.reloadData()
-                     
-                }
-                
-            })
-        }
+//        postsReference = ref.child("Posts")
+        setUpListeners()
     }
     
     func setUpListeners(){
-        db.collection("Articles").document("SF")
-            .addSnapshotListener { documentSnapshot, error in
-              guard let document = documentSnapshot else {
+        db.collection("Articles").addSnapshotListener { documentSnapshot, error in
+              guard let document = documentSnapshot?.documents else {
                 print("Error fetching document: \(error!)")
                 return
               }
-              guard let data = document.data() else {
-                print("Document data was empty.")
-                return
-              }
-              print("Current data: \(data)")
+            self.messages.removeAll()
+                for x in document {
+                    let data = x.data()
+                    let article = Article()
+                    if let author = data["author"] as? String {
+                        article.author = author
+                    } else {
+                        article.author = "incognito"
+                    }
+                    if let id = data["id"] as? String {
+                        article.id = id
+                    }
+                    if let message = data["message"] as? String {
+                        article.message = message
+                    } else if let message = data["post"] as? String {
+                        article.message = message
+                    }
+                    if let originalPublisherId = data["originalPublisherId"] as? String {
+                        article.originalPublisherId = originalPublisherId
+                    }
+                    if let translator = data["translator"] as? String {
+                        article.translatorName = translator
+                    }
+                    self.messages.append(article)
+                }
+            self.tableView.reloadData()
             }
     }
     
@@ -99,7 +87,7 @@ class PublishVC: UIViewController{
         let postDict = ["author":authorInput.text!,
                         "translator":translatorInput.text!,
                         "id":docId,
-                        "post":postText.text!,"originalPublisherId":publisher] as [String : Any]
+                        "message":postText.text!,"originalPublisherId":publisher] as [String : Any]
         
  
        
@@ -127,9 +115,9 @@ class PublishVC: UIViewController{
     func manuallyPublishArticle(post:Article){
         
         let postDict = ["author":post.author,
-                        "translator":post.translator,
+                        "translatorName":post.translatorName,
                         "id":post.id,
-                        "post":post.message,
+                        "message":post.message,
                         "originalPublisherId":post.originalPublisherId]
         
         Functions.functions().httpsCallable("manuallyPublishArticle").call(postDict)  { (result, err) in

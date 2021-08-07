@@ -17,7 +17,7 @@ exports.manuallyPublishArticle = functions.https.onCall(
     async (data, context) => {
     const author = data.author;  
     const translator = data.translator;
-    const post = data.post;  
+    const post = data.message;  
     const originalPublisherId = data.originalPublisherId;
     const phoneNumber = '+18509602169' 
 

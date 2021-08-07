@@ -29,6 +29,8 @@
 		F2BD0A7826BB9C9E002F3E86 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0A7726BB9C9E002F3E86 /* APIService.swift */; };
 		F2BD0B1326BC8FCE002F3E86 /* GameServerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1226BC8FCE002F3E86 /* GameServerSingleton.swift */; };
 		F2BD0B1526BC9C7F002F3E86 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1426BC9C7F002F3E86 /* Post.swift */; };
+		F2BD0B1726BDE9EF002F3E86 /* ArticlesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1626BDE9EF002F3E86 /* ArticlesCell.swift */; };
+		F2BD0B1926BDEB61002F3E86 /* ArticlesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1826BDEB61002F3E86 /* ArticlesTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		F2BD0A7726BB9C9E002F3E86 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		F2BD0B1226BC8FCE002F3E86 /* GameServerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServerSingleton.swift; sourceTree = "<group>"; };
 		F2BD0B1426BC9C7F002F3E86 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F2BD0B1626BDE9EF002F3E86 /* ArticlesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCell.swift; sourceTree = "<group>"; };
+		F2BD0B1826BDEB61002F3E86 /* ArticlesTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesTable.swift; sourceTree = "<group>"; };
 		F9024EDBC32934D8421197B3 /* Pods-KingsEcho-KingsEchoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KingsEcho-KingsEchoUITests.release.xcconfig"; path = "Target Support Files/Pods-KingsEcho-KingsEchoUITests/Pods-KingsEcho-KingsEchoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +203,8 @@
 				F2BD0A6B26BA5F91002F3E86 /* SignInVC.swift */,
 				F2BD0A3926BA593C002F3E86 /* PublishVC.swift */,
 				F2BD0A7526BB9BEC002F3E86 /* ViewController.swift */,
+				F2BD0B1626BDE9EF002F3E86 /* ArticlesCell.swift */,
+				F2BD0B1826BDEB61002F3E86 /* ArticlesTable.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -475,9 +481,11 @@
 				F2BD0A3A26BA593C002F3E86 /* PublishVC.swift in Sources */,
 				F2BD0A7226BB9A29002F3E86 /* EmployeesViewModel.swift in Sources */,
 				F2BD0A7426BB9A78002F3E86 /* Employee.swift in Sources */,
+				F2BD0B1926BDEB61002F3E86 /* ArticlesTable.swift in Sources */,
 				F2BD0A3626BA593C002F3E86 /* AppDelegate.swift in Sources */,
 				F2BD0A3826BA593C002F3E86 /* SceneDelegate.swift in Sources */,
 				F2BD0A7626BB9BEC002F3E86 /* ViewController.swift in Sources */,
+				F2BD0B1726BDE9EF002F3E86 /* ArticlesCell.swift in Sources */,
 				F2BD0A7826BB9C9E002F3E86 /* APIService.swift in Sources */,
 				F2BD0B1326BC8FCE002F3E86 /* GameServerSingleton.swift in Sources */,
 				F2BD0A6C26BA5F91002F3E86 /* SignInVC.swift in Sources */,

@@ -9,6 +9,7 @@ ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseFunctions.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebasePhoneAuthUI.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseStorage.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework
