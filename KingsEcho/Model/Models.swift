@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestore
 
 class Article {
     var author: String
@@ -49,5 +51,35 @@ class User {
     var myArticles: [Article]?
     var mySubscribers: [String]? // list of user id of people who need to get notified of my articles
     var mySubscription: [String]? //this is a list of the echochambers i am a part of
+    
+    func getSubscribers(document:[QueryDocumentSnapshot]) -> [User] {
+        var subscriptions = [User]()
+        
+        let mysubs = UserData.shared.mySubscriptions
+        subscriptions.removeAll()
+        if let subs = mysubs?.isEmpty, !subs {
+            let mysubsar = Array(mysubs!.keys)
+            for x in document{
+                let suber = User()
+                let data = x.data()
+                if let userId = data["id"] as? String {
+                    if mysubsar.contains(userId) {
+                        if let name = data["name"] as? String {
+                            suber.name = name
+                        }
+                        if let email = data["email"] as? String {
+                            suber.email = email
+                        }
+                        if let phoneNumber = data["phoneNumber"] as? String {
+                            suber.phoneNumber = phoneNumber
+                        }
+                        subscriptions.append(suber)
+                    }
+                }
+            }
+            return subscriptions
+        }
+        return []
+    }
 }
  

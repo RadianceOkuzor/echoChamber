@@ -11,7 +11,7 @@
 		82C3A6D6F71029703FB6B7BA /* Pods_KingsEcho_KingsEchoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B213AB2110261031803675D /* Pods_KingsEcho_KingsEchoUITests.framework */; };
 		ABEE97FEF061B4322488A4FF /* Pods_KingsEcho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD263367013D6952CCC680DA /* Pods_KingsEcho.framework */; };
 		F28DC9C926BE313D00B16050 /* ChamberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28DC9C826BE313D00B16050 /* ChamberTableViewCell.swift */; };
-		F28DC9CB26BE42AD00B16050 /* SharedResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28DC9CA26BE42AD00B16050 /* SharedResources.swift */; };
+		F28DC9CB26BE42AD00B16050 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28DC9CA26BE42AD00B16050 /* UserData.swift */; };
 		F28DC9CD26BE4C8E00B16050 /* MyArticlesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28DC9CC26BE4C8E00B16050 /* MyArticlesTableView.swift */; };
 		F28DC9CF26BE4D4C00B16050 /* MyArticlesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28DC9CE26BE4D4C00B16050 /* MyArticlesCell.swift */; };
 		F28DC9D126BE531F00B16050 /* CreateArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28DC9D026BE531F00B16050 /* CreateArticleViewController.swift */; };
@@ -32,8 +32,8 @@
 		F2BD0A7426BB9A78002F3E86 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0A7326BB9A78002F3E86 /* Employee.swift */; };
 		F2BD0A7626BB9BEC002F3E86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0A7526BB9BEC002F3E86 /* ViewController.swift */; };
 		F2BD0A7826BB9C9E002F3E86 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0A7726BB9C9E002F3E86 /* APIService.swift */; };
-		F2BD0B1326BC8FCE002F3E86 /* GameServerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1226BC8FCE002F3E86 /* GameServerSingleton.swift */; };
-		F2BD0B1526BC9C7F002F3E86 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1426BC9C7F002F3E86 /* Post.swift */; };
+		F2BD0B1326BC8FCE002F3E86 /* ArticleServerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1226BC8FCE002F3E86 /* ArticleServerSingleton.swift */; };
+		F2BD0B1526BC9C7F002F3E86 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1426BC9C7F002F3E86 /* Models.swift */; };
 		F2BD0B1726BDE9EF002F3E86 /* ArticlesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1626BDE9EF002F3E86 /* ArticlesCell.swift */; };
 		F2BD0B1926BDEB61002F3E86 /* ArticlesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD0B1826BDEB61002F3E86 /* ArticlesTable.swift */; };
 /* End PBXBuildFile section */
@@ -65,7 +65,7 @@
 		CD263367013D6952CCC680DA /* Pods_KingsEcho.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KingsEcho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4CE3E8EB94AE9A07256B73 /* Pods-KingsEcho-KingsEchoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KingsEcho-KingsEchoUITests.debug.xcconfig"; path = "Target Support Files/Pods-KingsEcho-KingsEchoUITests/Pods-KingsEcho-KingsEchoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F28DC9C826BE313D00B16050 /* ChamberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChamberTableViewCell.swift; sourceTree = "<group>"; };
-		F28DC9CA26BE42AD00B16050 /* SharedResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedResources.swift; sourceTree = "<group>"; };
+		F28DC9CA26BE42AD00B16050 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		F28DC9CC26BE4C8E00B16050 /* MyArticlesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyArticlesTableView.swift; sourceTree = "<group>"; };
 		F28DC9CE26BE4D4C00B16050 /* MyArticlesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyArticlesCell.swift; sourceTree = "<group>"; };
 		F28DC9D026BE531F00B16050 /* CreateArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleViewController.swift; sourceTree = "<group>"; };
@@ -90,8 +90,8 @@
 		F2BD0A7326BB9A78002F3E86 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		F2BD0A7526BB9BEC002F3E86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F2BD0A7726BB9C9E002F3E86 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		F2BD0B1226BC8FCE002F3E86 /* GameServerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServerSingleton.swift; sourceTree = "<group>"; };
-		F2BD0B1426BC9C7F002F3E86 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F2BD0B1226BC8FCE002F3E86 /* ArticleServerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleServerSingleton.swift; sourceTree = "<group>"; };
+		F2BD0B1426BC9C7F002F3E86 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F2BD0B1626BDE9EF002F3E86 /* ArticlesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCell.swift; sourceTree = "<group>"; };
 		F2BD0B1826BDEB61002F3E86 /* ArticlesTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesTable.swift; sourceTree = "<group>"; };
 		F9024EDBC32934D8421197B3 /* Pods-KingsEcho-KingsEchoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KingsEcho-KingsEchoUITests.release.xcconfig"; path = "Target Support Files/Pods-KingsEcho-KingsEchoUITests/Pods-KingsEcho-KingsEchoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -227,8 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				F2BD0A7326BB9A78002F3E86 /* Employee.swift */,
-				F2BD0B1426BC9C7F002F3E86 /* Post.swift */,
-				F28DC9CA26BE42AD00B16050 /* SharedResources.swift */,
+				F2BD0B1426BC9C7F002F3E86 /* Models.swift */,
+				F28DC9CA26BE42AD00B16050 /* UserData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				F2BD0A7126BB9A29002F3E86 /* EmployeesViewModel.swift */,
-				F2BD0B1226BC8FCE002F3E86 /* GameServerSingleton.swift */,
+				F2BD0B1226BC8FCE002F3E86 /* ArticleServerSingleton.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -493,7 +493,7 @@
 			files = (
 				F2BD0A6A26BA5F58002F3E86 /* SignUpVC.swift in Sources */,
 				F28DC9D126BE531F00B16050 /* CreateArticleViewController.swift in Sources */,
-				F2BD0B1526BC9C7F002F3E86 /* Post.swift in Sources */,
+				F2BD0B1526BC9C7F002F3E86 /* Models.swift in Sources */,
 				F2BD0A3A26BA593C002F3E86 /* PublishVC.swift in Sources */,
 				F28DC9CF26BE4D4C00B16050 /* MyArticlesCell.swift in Sources */,
 				F2BD0A7226BB9A29002F3E86 /* EmployeesViewModel.swift in Sources */,
@@ -504,10 +504,10 @@
 				F2BD0A3626BA593C002F3E86 /* AppDelegate.swift in Sources */,
 				F2BD0A3826BA593C002F3E86 /* SceneDelegate.swift in Sources */,
 				F2BD0A7626BB9BEC002F3E86 /* ViewController.swift in Sources */,
-				F28DC9CB26BE42AD00B16050 /* SharedResources.swift in Sources */,
+				F28DC9CB26BE42AD00B16050 /* UserData.swift in Sources */,
 				F2BD0B1726BDE9EF002F3E86 /* ArticlesCell.swift in Sources */,
 				F2BD0A7826BB9C9E002F3E86 /* APIService.swift in Sources */,
-				F2BD0B1326BC8FCE002F3E86 /* GameServerSingleton.swift in Sources */,
+				F2BD0B1326BC8FCE002F3E86 /* ArticleServerSingleton.swift in Sources */,
 				F2BD0A6C26BA5F91002F3E86 /* SignInVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

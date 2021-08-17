@@ -12,30 +12,42 @@ import FirebaseFirestore
 import FoldingCell
 import UIKit
 
-class ArticlesTableVC: UITableViewController {
+class ArticlesTableVC: UITableViewController, ArticleServerDelegate {
+    func updateArticles() {
+        articles = UserData.shared.articles ?? []
+        setup()
+        tableView.reloadData()
+    }
+    
+    func updateMySubscribers() {
+        
+    }
+    
+    func updateMySubscriptions() {
+        
+    }
+    
 
     enum Const {
         static let closeCellHeight: CGFloat = 179
         static let openCellHeight: CGFloat = 600
     }
     
-    var db: Firestore!
-    var messages = [Article]()
+    var articles = [Article]()
     
     var cellHeights: [CGFloat] = []
-
+    
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        db = Firestore.firestore()
-        
-        setUpListeners()
-        setUpUserData()
+        ArticleServerSingleton.shared.delegate = self
+        ArticleServerSingleton.shared.fetchArticles()
     }
 
     // MARK: Helpers
     private func setup() {
-        cellHeights = Array(repeating: Const.closeCellHeight, count: messages.count)
+        cellHeights = Array(repeating: Const.closeCellHeight, count: articles.count)
         tableView.estimatedRowHeight = Const.closeCellHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
@@ -62,7 +74,7 @@ class ArticlesTableVC: UITableViewController {
 extension ArticlesTableVC {
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return messages.count
+        return articles.count
     }
 
     override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -86,20 +98,20 @@ extension ArticlesTableVC {
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations
-        cell.publisherId = messages[indexPath.row].originalPublisherId
-        cell.articleId = messages[indexPath.row].id
-        cell.authorLabel.text = messages[indexPath.row].author
-        cell.authorLabelOpen.text = messages[indexPath.row].author
-        cell.messageBodyLabel.text = messages[indexPath.row].message
-        cell.translatorsLabel.text = messages[indexPath.row].translatorName
-        cell.messageTranslation = messages[indexPath.row].messageTranslated ?? [:]
-        cell.messageTitleLabel.text = messages[indexPath.row].title
-        cell.messageTitleOpen.text = messages[indexPath.row].title
-        cell.publisherNameLabel.text = messages[indexPath.row].publisherName
-        let str = messages[indexPath.row].publisherName?.prefix(2)
+        cell.publisherId = articles[indexPath.row].originalPublisherId
+        cell.articleId = articles[indexPath.row].id
+        cell.authorLabel.text = articles[indexPath.row].author
+        cell.authorLabelOpen.text = articles[indexPath.row].author
+        cell.messageBodyLabel.text = articles[indexPath.row].message
+        cell.translatorsLabel.text = articles[indexPath.row].translatorName
+        cell.messageTranslation = articles[indexPath.row].messageTranslated ?? [:]
+        cell.messageTitleLabel.text = articles[indexPath.row].title
+        cell.messageTitleOpen.text = articles[indexPath.row].title
+        cell.publisherNameLabel.text = articles[indexPath.row].publisherName
+        let str = articles[indexPath.row].publisherName?.prefix(2)
         cell.publisherInitials.text = String(str ?? "--")
         cell.publisherInitialsClosed.text =  String(str ?? "--")
-        let count = "\(messages[indexPath.row].echoesCount ?? 0)"
+        let count = "\(articles[indexPath.row].echoesCount ?? 0)"
         cell.echoesCountLabel.text = count
         cell.echoesCountLabelClosed.text = count 
         /*
@@ -148,85 +160,3 @@ extension ArticlesTableVC {
     }
 }
 
-extension ArticlesTableVC {
-    func setUpListeners(){
-        db.collection("Articles").addSnapshotListener { documentSnapshot, error in
-              guard let document = documentSnapshot?.documents else {
-                print("Error fetching document: \(error!)")
-                return
-              }
-            self.messages.removeAll()
-                for x in document {
-                    let data = x.data()
-                    let article = Article()
-                    if let author = data["author"] as? String {
-                        article.author = author
-                    }
-                    if let id = data["id"] as? String {
-                        article.id = id
-                    }
-                    if let messageT = data["messageTranslated"] as? [String:String] {
-                        article.messageTranslated = messageT
-                    }
-                    if let message = data["message"] as? String {
-                        article.message = message
-                    }
-                    if let messageTitle = data["title"] as? String {
-                        article.title = messageTitle
-                    }
-                    if let echoesCount = data["echoesCount"] as? [String] {
-                        article.echoesCount = echoesCount.count
-                    }
-                    if let likesCount = data["likesCount"] as? [String] {
-                        article.likes = likesCount
-                    }
-                    if let originalPublisherId = data["originalPublisherId"] as? String {
-                        article.originalPublisherId = originalPublisherId
-                    }
-                    if let publisherName = data["publisherName"] as? String {
-                        article.publisherName = publisherName
-                    }
-                    if let translator = data["translatorName"] as? String {
-                        article.translatorName = translator
-                    }
-                    self.messages.append(article)
-                }
-            self.setup()
-            self.tableView.reloadData()
-            }
-    }
-    
-    func setUpUserData() {
-        let myId = Auth.auth().currentUser!.uid
-        let docRef = db.collection("Users").document(myId)
-
-        docRef.addSnapshotListener { (document, error) in
-            if let document = document, document.exists {
-                
-                if let data = document.data() {
-                    if let name = data["name"] as? String {
-                        UserData.shared.name = name
-                    }
-                    if let email = data["email"] as? String {
-                        UserData.shared.email = email
-                    }
-                    if let phoneNumber = data["phoneNumber"] as? String {
-                        UserData.shared.phoneNumber = phoneNumber
-                    }
-                    if let language = data["language"] as? String {
-                        UserData.shared.language = language
-                    }
-                    if let phoneNumbers = data["mySubscribers"] as? [String:[String:AnyObject]]{
-                        UserData.shared.subscribersPhoneNumbers = Array(phoneNumbers.keys)
-                    }
-                    if let mySubscriptions = data["mySubscriptions"] as? [String:String]{
-                        UserData.shared.mySubscriptions = mySubscriptions
-                    }
-                }
-                  
-            } else {
-                print("Document does not exist")
-            }
-        }
-    }
-}

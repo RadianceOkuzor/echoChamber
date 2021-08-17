@@ -10,7 +10,23 @@ import Firebase
 import FirebaseFunctions
 import FirebaseFirestore
 
-class PublishVC: UIViewController{
+extension PublishVC: ArticleServerDelegate {
+    func updateArticles() {
+         
+    }
+    
+    func updateMySubscriptions() {
+        subscriptions = UserData.shared.subscriptions ?? []
+        self.tableView2.reloadData()
+    }
+    
+    func updateMySubscribers() {
+        subscribers = UserData.shared.mySubscribers ?? []
+        self.tableView.reloadData()
+    }
+}
+
+class PublishVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableView2: UITableView!
@@ -30,6 +46,9 @@ class PublishVC: UIViewController{
     
     var subscribers = [User]()
     var subscriptions = [User]()
+    var articleDelegate:ArticleServerSingleton?
+     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,63 +63,10 @@ class PublishVC: UIViewController{
         addNewPersonView.layer.cornerRadius = 10
         ref = Database.database().reference()
         db = Firestore.firestore()
+        ArticleServerSingleton.shared.delegate = self
+        ArticleServerSingleton.shared.fetchSubscriptions()
+        ArticleServerSingleton.shared.fetchMyEchoChamber()
         
-//        postsReference = ref.child("Posts")
-        setUpListeners()
-    }
-    
-    func setUpListeners(){
-        // get users' subscribers and what they subscribe to
-        let uid = Auth.auth().currentUser?.uid
-        db.collection("Users").document(uid ?? "").addSnapshotListener { documentSnapshot, error in
-              guard let document = documentSnapshot else {
-                print("Error fetching document: \(error!)")
-                return
-              }
-            self.subscribers.removeAll()
-            if let x = document["mySubscribers"] as? [String:[String:AnyObject]] {
-                for (a,b) in x {
-                    let user = User()
-                    if let name = b["subscriberName"] as? String {
-                        user.phoneNumber = a
-                        user.name = name
-                    }
-                    self.subscribers.append(user)
-                }
-            }
-            self.tableView.reloadData()
-            }
-        
-        db.collection("Users").addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot?.documents else {
-              print("Error fetching document: \(error!)")
-              return
-            }
-            self.subscriptions.removeAll()
-            let mysubs = UserData.shared.mySubscriptions
-            if let subs = mysubs?.isEmpty, !subs {
-                let mysubsar = Array(mysubs!.keys)
-                    for x in document {
-                        let suber = User()
-                        let data = x.data()
-                        if let userId = data["id"] as? String {
-                            if mysubsar.contains(userId) {
-                                if let name = data["name"] as? String {
-                                    suber.name = name
-                                }
-                                if let email = data["email"] as? String {
-                                    suber.email = email
-                                }
-                                if let phoneNumber = data["phoneNumber"] as? String {
-                                    suber.phoneNumber = phoneNumber
-                                }
-                                self.subscriptions.append(suber)
-                            }
-                        }
-                    }
-                self.tableView2.reloadData()
-            }
-        }
     }
     
     
@@ -167,7 +133,7 @@ extension PublishVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tableView2 {
-            return subscriptions.count
+            return subscriptions.count 
         } else {
             return subscribers.count
         }

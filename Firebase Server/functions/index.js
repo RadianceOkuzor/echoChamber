@@ -4,7 +4,7 @@ admin.initializeApp();
 
 const twilio = require('twilio');
 const accoundSid = 'ACb37f57f1cc70d5d19249e621095a477c'
-const authToken = '06aa40bc76a73c4286a18edc244811de'
+const authToken = '4708384b6fa83342c66cf0b102c662a1'
 
 const client = new twilio(accoundSid, authToken);
 

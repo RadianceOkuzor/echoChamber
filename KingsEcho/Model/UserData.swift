@@ -18,6 +18,9 @@ class UserData {
     var language: String?
     var subscribersPhoneNumbers: [String]?
     var mySubscriptions: [String:String]?
+    var subscriptions: [User]?
+    var mySubscribers: [User]?
+    var articles: [Article]?
     //Initializer access level change now
     init(){}
     
